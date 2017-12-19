@@ -5,12 +5,13 @@
 This template is a general template for scientific theses.
 Currently, it is the unofficial LaTeX template for Master, Bachelor, Diploma, and Student Theses at following institutions:
 
-  - University of Stuttgart, Computer Science.
-  - Paderborn University, Computer Science. - To be confirmed.
+  - University of Stuttgart, Computer Science. [[example-english](https://latextemplates.github.io/scientific-thesis-template/main-english.pdf)] [[example-german](https://latextemplates.github.io/scientific-thesis-template/main-german.pdf)]
+  - Paderborn University, Computer Science. - To be confirmed.  [[example-english](https://latextemplates.github.io/scientific-thesis-template/main-paderborn-english.pdf)] [[example-german](https://latextemplates.github.io/scientific-thesis-template/main-paderborn-german.pdf)]
 
 It will be extended to support theses from different institutions.
 
-More information at <https://github.com/latextemplates/scientific-thesis-template>.
+This README.md of the template is also rendered at <https://latextemplates.github.io/scientific-thesis-template/>.
+For architectural decision records see [docs/adr](https://latextemplates.github.io/scientific-thesis-template/adr/).
 
 <!-- toc -->
 
