@@ -118,8 +118,9 @@ If you do not want to have an updated installation, but fiddle around with dirty
 
 ## LaTeX compilation
 
-The template is compiled using normal LaTeX commands.
+The template is compiled using normal compiliation commands.
 Your LaTeX environment (such as [TeXStudio]) should take care about the compilation transparently.
+If you open `main-minted-german.tex`, there will be a warning that the compilation command will be overriden. Please anwer "(a) allow for this document".
 When the "Package Installation" dialog pops up at TeXStudio, choose your username at "The package will be installed for:" and uncheck "Always show this dialog before installing packages."
 If you want to include .svg graphics, [inkscape] has to be in your path.
 
@@ -146,6 +147,7 @@ For instance, for support of makeglossaries see <http://tex.stackexchange.com/qu
 
 ## FAQ
 
+
 ### Q: There is an output that biber/biblatex too old
 
 See installation hints of how to update them at different systems.
@@ -163,6 +165,14 @@ As of 2018-02-17, these are:
 
 Use the [MiKTeX console](https://miktex.org/howto/miktex-console) to refresh the package index.
 Then, automatic installation should work again.
+
+
+### Q: I cannot get minted to run. There is this `-shell-escape` warning.
+
+Please ensure that your compiliation command includes `-shell-escape`.
+E.g., `lualatex -shell-escape -synctex=1 main-minted-german.tex`.
+When compiling `main-minted-german.tex` with TeXStudio, you will see a dialog warning about overriding the comipiliation command.
+Just anser "(a) allow for this document" and it will work.
 
 
 ### Q: My Paderborn title page is strange. The boxes seem to be located arbitrarily.
@@ -185,7 +195,7 @@ Edit `preambel/chapterheads.tex`.
   - If you included some version control statements, please remove them. Currently, the template does not support any, but it used to support SVN.
   - By using `\largepage` and `\shortpage`, single lines at the bottom or at the top of the page can be manually fixed.
   - Search the PDF for "TODO" or similar things. Remove `\usepackage{todonotes}` in `config.tex`.
-  - Ensure that you run `pdflatex` at least three times and that there are no "undefined references".
+  - Ensure that you run `lualatex` at least three times and that there are no "undefined references".
   - The margins are intended for good screen reading. **Do not change them** (or do exactly know what you are doing).
 
 
@@ -222,7 +232,7 @@ Make targets:
   - `choco install python`
   - `pip install pygments`
 1. Start with `main-minted-german.tex`
-2. Use `-shell-escape` when texing: `pdflatex -shell-escape main-minted-german.tex`
+2. Use `-shell-escape` when texing: `lualatex -shell-escape main-minted-german.tex`
 
 
 ### Q: Is there any other place to look for further information?
@@ -268,7 +278,7 @@ We are collecting alternatives at the issue [#25](https://github.com/latextempla
 ### Directories
 
 * [graphics](graphics/) Directory containing the figures.
-  By using PDFLaTeX it is possible to use PDFs, JPGs, PNGs, ... We recommend to use PDFs to enable smooth scaling.
+  By using LuaLaTex/PDFLaTeX it is possible to use PDFs, JPGs, PNGs, ... We recommend to use PDFs to enable smooth scaling.
 
 ### Files
 
