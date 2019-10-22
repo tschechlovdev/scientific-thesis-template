@@ -1,0 +1,67 @@
+\chapter{Evaluation of Hyperparameter Selection}
+
+\section{Offline}
+
+\subsection{Setup}
+
+\begin{itemize}
+    \item For the evaluation, 81 datasets that were all synthetically generated were used.
+    \item For the generation of the dataset the tool described in \cite{Fritz2019InitializingAnalysis} was used. \xtodo{Maybe move this part to implementation? And then only describe the used input parameters. Or maybe describe also training and test data generation with used parameters in implementation}
+    \item The generated the datasets based on the following input parameters:
+    \begin{itemize}
+        \item $n$: Number of instances of the dataset.
+        \item $d$: Number of dimensions (or features) of the dataset.
+        The value of each generated feature was in the intervall [-10, 10].
+        \item $k$: Number of clusters of the dataset. Each cluster was generated according to the Gaussian distribution with mean at the center and standard deviation of 0.5.
+        Also, each cluster contained $\frac{n}{k}$ instances.
+        \item $r$: Ratio of outliers of the dataset. This means that $\frac{r}{100} \ast n$ additional instances were added uniformly.
+    \end{itemize}
+    \item Each of the input parameters was divided into three categories: \textit{Small}, \textit{Medium} and \textit{Large}.
+    \item The values for each category and input parameter for the offline phase can bee seen in \cref{tab:parametersOfflinePhase}.
+    
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[]
+\centering
+\caption{The values of the input parameters for the generation of the training datasets divided into \textit{Small}, \textit{Medium} and \textit{Large}.}
+\label{tab:parametersOfflinePhase}
+\begin{tabular}{@{}llll@{}}
+\toprule
+Parameter    & Small & Medium & Large  \\ \midrule
+$n$ & 1,000 & 5,000  & 10,000 \\
+$d$ & 10    & 30     & 50     \\
+$k$ & 5     & 50     & 100    \\
+$r$ & 0     & 33     & 66     \\ \bottomrule
+\end{tabular}
+\end{table}
+\item For each combination of parameters one dataset was created.
+\item Since there are $3^4 = 81$ combinations, the same amount of datasets was created for the training phase.
+\item Because 9 metrics, 4 optimizers and 81 datasets were used, 2,916 optimizer runs were performed.
+\item Each optimizer had 50 iterations, which results in 145,800 KMeans and metric executions.
+\item Therefore, the range for the possible $k$ values that were sampled from the optimizers were limited to $R=[2, 2 * k_{max}]$, where $k_{max}$ denotes the highest actual k value that was used in the generated datasets.
+Since $k_{max}=100$ the range was set to $R=[2, 200]$.
+\item Theoretically, the range could be $[2, n]$ but this would be computational too expensive.
+\item A value close to $n$ would mean that the runtime complexity of KMeans would be quadratic.
+\item 
+\end{itemize}
+\section{Online}
+
+
+
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[]
+\centering
+\caption{The values of the input parameters for the generation of the training datasets divided into \textbackslash{}textit\{Small\}, \textbackslash{}textit\{Medium\} and \textbackslash{}textit\{Large\}.}
+\label{tab:parametersOfflinePhase}
+\begin{tabular}{@{}lllll@{}}
+\toprule
+       & $n$    & $d$ & $k$ & $r$ \\ \midrule
+Small  & 1,000  & 10  & 5   & 0   \\
+Medium & 5,000  & 30  & 50  & 33  \\
+Large  & 10,000 & 50  & 100 & 66  \\ \bottomrule
+\end{tabular}
+\end{table}
+\subsection{Coldstart}
+
+\subsection{Warmstart}
